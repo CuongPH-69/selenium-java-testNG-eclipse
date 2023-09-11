@@ -28,7 +28,7 @@ public class Topic_01_Check_Environment {
 		driver.manage().window().maximize();
 		driver.get("https://www.facebook.com/");
 		//update
-		//commit and push
+
 	}
 
 	@Test
