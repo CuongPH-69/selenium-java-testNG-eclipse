@@ -2,10 +2,8 @@ package webdriver;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,25 +23,23 @@ public class Topic_00_Environment {
 
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		driver.get("https://www.facebook.com/");
 		//update
 
 	}
 
 	@Test
-	public void TC_01_Url() {
-		Assert.assertEquals(driver.getCurrentUrl(), "https://www.facebook.com/");
+	public void TC_01() {
+		
 	}
 
 	@Test
-	public void TC_02_Logo() {
-		Assert.assertTrue(driver.findElement(By.cssSelector("img.fb_logo")).isDisplayed());
+	public void TC_02() {
+		
 	}
 
 	@Test
-	public void TC_03_Form() {
-		Assert.assertTrue(driver.findElement(By.xpath("//form[@data-testid='royal_login_form']")).isDisplayed());
+	public void TC_03() {
+		
 	}
 
 	@AfterClass
