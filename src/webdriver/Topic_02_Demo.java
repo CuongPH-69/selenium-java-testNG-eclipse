@@ -61,12 +61,12 @@ public class Topic_02_Demo {
 	
 	@Test
 	public void TC_05_PartialLinkText() {
-		driver.findElement(By.partialLinkText("Back to")).click();
+		driver.findElement(By.partialLinkText("Quay lại")).click();
 	}
 	
 	@Test
 	public void TC_06_LinkText() {
-		driver.findElement(By.linkText("REGISTER")).click();
+		driver.findElement(By.linkText("ĐĂNG KÝ TÀI KHOẢN")).click();
 	}
 	
 	@Test
