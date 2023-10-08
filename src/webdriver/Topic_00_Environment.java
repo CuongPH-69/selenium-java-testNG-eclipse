@@ -26,7 +26,14 @@ public class Topic_00_Environment {
 		//update
 
 	}
-
+	public void sleepTimeSecond(long timeInSecond) {
+		try {
+			Thread.sleep(timeInSecond * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	public void TC_01() {
 		
