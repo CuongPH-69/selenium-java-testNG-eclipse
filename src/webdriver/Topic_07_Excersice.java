@@ -118,12 +118,12 @@ public class Topic_07_Excersice {
 		
 	}
 
-	@Test
+//	@Test
 	public void TC_02() {
 		
 	}
 
-	@Test
+//	@Test
 	public void TC_03() {
 		
 	}
