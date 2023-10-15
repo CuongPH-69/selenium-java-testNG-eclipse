@@ -118,7 +118,7 @@ public class Topic_07_Excersice {
 		
 	}
 
-//	@Test
+	@Test
 	public void TC_02() {
 		
 	}
