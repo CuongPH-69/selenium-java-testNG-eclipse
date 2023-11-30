@@ -1,9 +1,12 @@
 package webdriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.Color;
 import org.testng.Assert;
@@ -16,6 +19,8 @@ public class Topic_09_Handle_button {
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
 	By loginButton;
+//	Khởi tạo 1 biến có kiểu dữ liệu là JavascriptExecutor và import thư viện
+	JavascriptExecutor jsExecutor;
 	@BeforeClass
 	public void beforeClass() {
 		if (osName.contains("Windows")) {
@@ -28,6 +33,8 @@ public class Topic_09_Handle_button {
 
 //		driver = new FirefoxDriver();
 		driver = new ChromeDriver();
+//		Khai báo sau khi khởi tạo biến driver nếu không sẽ báo lỗi
+		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//update
 		 
@@ -75,7 +82,7 @@ public class Topic_09_Handle_button {
 		sleepTimeSecond(2);
 	}
 
-	@Test
+//	@Test
 	public void TC_03() {
 		driver.get("https://material.angular.io/components/radio/examples");
 		By favoriteSeasonRadioButton = By.xpath("//label[normalize-space()='Summer']//preceding-sibling::div/input");
@@ -97,7 +104,46 @@ public class Topic_09_Handle_button {
 		Assert.assertFalse(driver.findElement(checkedCheckbox).isSelected());
 		Assert.assertFalse(driver.findElement(IndeterminateCheckbox).isSelected());		
 	}
+	
+//	@Test
+	public void TC_04() {
+		driver.get("https://automationfc.github.io/multiple-fields/");
+		List<WebElement> allCheckbox = driver.findElements(By.cssSelector("input[type='checkbox']"));
+		for (WebElement webElement : allCheckbox) {
+			if (webElement.getAttribute("value").equals("Gallstones")) {
+				webElement.click();
+			}
+		}
+//		for (Int i = 0; i < allCheckbox.size(); i++) {
+//			driver.findElements(By.cssSelector("input[type='checkbox']"))[i].click();
+//		}
+//		for (WebElement webElement : allCheckbox) {
+//			Assert.assertTrue(webElement.isSelected());
+//			System.out.println("Checkbox is checked");
+//		}
+		sleepTimeSecond(2);
+	}
 
+//	@Test
+	public void TC_05() {
+		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
+		By buttonRadio = By.xpath("//div[text()='Đăng ký cho người thân']//preceding-sibling::div/input");
+//		Câu lệnh dùng để sử dụng javascript thực hiện click lên 1 element bị che 
+//		(arguments[0].click(),driver.findElement(buttonRadio)) dùng để chỉ index đầu tiên buttonRadio và thực hiện hành động click
+//		Ngoài ra nếu có thêm nhiều element thì tăng số lượng index cũng như có thể thay đổi hành động đối với index khác nhau
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(buttonRadio));
+		sleepTimeSecond(2);
+	}
+	
+	@Test
+	public void TC_06() {
+		driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+		By cityRadioButton = By.xpath("//div[@class='d7L4fc bJNwt  FXLARc aomaEc ECvBRb']");
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(cityRadioButton));
+		Assert.assertTrue(driver.findElement(By.cssSelector("div[aria-label='Cần Thơ'][aria-checked='true']")).isDisplayed());
+		
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
